@@ -93,6 +93,8 @@
       thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+      thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
+      console.log('thisProduct.imageWrapper',thisProduct.imageWrapper);
     }
     
     initAccordion(){
@@ -111,7 +113,7 @@
           
         /* find all active products */
         const activeProducts = document.querySelectorAll(select.all.menuProductsActive);
-        console.log(activeProducts);
+        console.log('activeProducts',activeProducts);
         /* START LOOP: for each active product */
         for(let activeProduct of activeProducts){
           /* START: if the active product isn't the element of thisProduct */
@@ -177,14 +179,35 @@
           /* END IF: if option is selected and option is not default */
           }
           /* START ELSE IF: if option is not selected and option is default */
-          if(!optionSelected && option.default){
+          else if(!optionSelected && option.default){
             
             /* deduct price of option from price */
             price = price - option.price;
-            
+
             /* END ELSE IF: if option is not selected and option is default */
           }
           /* END LOOP: for each optionId in param.options */
+                  
+          const addImages = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId);
+          
+          console.log('addImages', addImages);
+                    
+          if(optionSelected){
+            
+            
+            for(let addImage in addImages){
+              addImages.classList.add(classNames.menuProduct.imageVisible);
+              console.log(addImage);
+            }
+          }
+            
+          else {
+            for(let addImage in addImages){
+              addImages.classList.remove(classNames.menuProduct.imageVisible);
+              console.log(addImage);
+            }
+          }
+          
         }
         /* END LOOP: for each paramId in thisProduct.data.params */
       }
