@@ -114,7 +114,7 @@
       
       /*find menu container*/
       const menuContainer = document.querySelector(select.containerOf.menu);
-      
+            
       /*add element to menu*/
       menuContainer.appendChild(thisProduct.element);
       
@@ -132,6 +132,7 @@
       ////console.log('thisProduct.imageWrapper',thisProduct.imageWrapper);
       thisProduct.amountWidgetElem = thisProduct.element.querySelector(select.menuProduct.amountWidget);
       //console.log(thisProduct.amountWidgetElem);
+      
     }
     
     initAccordion(){
@@ -258,11 +259,15 @@
       /*multiply price by amount*/
       thisProduct.priceSingle = price;
       thisProduct.price = thisProduct.priceSingle * thisProduct.amountWidget.value;
-      
+            
       /* set the contents of thisProduct.priceElem to be the value of variable price */
       thisProduct.priceElem.innerHTML = thisProduct.price;
       
       console.log(thisProduct.params);
+      
+      thisProduct.name = thisProduct.data.name;
+      
+      thisProduct.amount = thisProduct.amountWidget.value;
     }
     
     initAmountWidget(){
@@ -344,7 +349,7 @@
       thisCart.getElements(element);
       
       thisCart.initActions();
-            
+                        
       console.log('new Cart:', thisCart);
     }
     
@@ -373,40 +378,57 @@
     }
     
     add(menuProduct){
-      const thisProduct = this;
+      const thisCart = this;
       
       const generatedHTML = templates.cartProduct(menuProduct);
 
       const generatedDOM = utils.createDOMFromHTML(generatedHTML);
-      console.log(generatedDOM);
       
-      thisProduct.dom.productList.appendChild(generatedDOM);
-      console.log(thisProduct.dom.productList);
+      thisCart.dom.productList.appendChild(generatedDOM);
       
-      /***
-        generate HTML based on template
-      const generatedHTML = templates.menuProduct(thisProduct.data);
-
-        create element using utils.createElementFromHTML
-      thisProduct.element = utils.createDOMFromHTML(generatedHTML);
+      thisCart.products.push(menuProduct);
       
-        find menu container
-      const menuContainer = document.querySelector(select.containerOf.menu);
-      
-        add element to menu
-      menuContainer.appendChild(thisProduct.element);
-      *****/
+      console.log('adding product', menuProduct);
     }
     
     addToCart(){
       
       const thisProduct = this;
-      
-      thisProduct.name = thisProduct.data.name;
-      
-      thisProduct.amount = thisProduct.amountWidget.value;
-      
+          
       app.cart.add(thisProduct);
+            
+      console.log('thisProduct'.thisProduct);
+    }
+  }
+  
+  class CartProduct {
+    constructor(menuProduct, element){
+      const thisCartProduct = this;
+      
+      thisCartProduct.id = menuProduct.id;
+      thisCartProduct.name = menuProduct.name;
+      thisCartProduct.price = menuProduct.price;
+      thisCartProduct.priceSingle = menuProduct.priceSingle;
+      thisCartProduct.amount = menuProduct.amount;
+      thisCartProduct.params = JSON.parse(JSON.stringify(menuProduct.params));
+      
+      thisCartProduct.getElements(element);
+      
+      console.log('new CartProduct',thisCartProduct);
+      console.log('productData', menuProduct);
+    }
+    
+    getElements(element){
+      const thisCartProduct = this;
+      
+      thisCartProduct.dom = {};
+      
+      thisCartProduct.dom.wrapper = element;      
+      thisCartProduct.dom.amountWidget = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.amountWidget);
+      thisCartProduct.dom.price = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.price);
+      thisCartProduct.dom.edit = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.edit);
+      thisCartProduct.dom.remove = thisCartProduct.dom.wrapper.querySelector(select.cartProduct.remove);
+
     }
   }
   
