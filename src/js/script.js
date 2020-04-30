@@ -191,7 +191,7 @@
       const formData = utils.serializeFormToObject(thisProduct.form);
       ////console.log('formData', formData);
       
-      thisProduct.params ={}
+      thisProduct.params ={};
       
       /* set variable price to equal thisProduct.data.price */
       let price = thisProduct.data.price;
@@ -243,13 +243,11 @@
             
             thisProduct.params[paramId].options[optionId] = option.label;
             
-            for(let addImage in addImages){
+            if(addImages){
               addImages.classList.add(classNames.menuProduct.imageVisible);
             }
-          }
                     
-          if(!optionSelected){
-            for(let addImage in addImages){
+            else if(addImages){
               addImages.classList.remove(classNames.menuProduct.imageVisible);
             }
           }
@@ -350,17 +348,6 @@
       console.log('new Cart:', thisCart);
     }
     
-    getElements(element){
-      const thisCart = this;
-      
-      thisCart.dom = {};
-      
-      thisCart.dom.wrapper = element;
-      
-      thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
-      
-      thisCart.dom.productList;
-    }
     
     initActions(){
       const thisCart = this;
@@ -372,28 +359,52 @@
       }); 
     }
     
-    add(menuProduct){
+    getElements(element){
       const thisCart = this;
       
-      const generatedHTML = templates.menuProduct(thisCart);
+      thisCart.dom = {};
+      
+      thisCart.dom.wrapper = element;
+      
+      thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
+      
+      thisCart.dom.productList = document.querySelector(select.cart.productList);
+      console.log('thisCart.dom.productList', thisCart.dom.productList);
+    }
+    
+    add(menuProduct){
+      const thisProduct = this;
+      
+      const generatedHTML = templates.cartProduct(menuProduct);
 
       const generatedDOM = utils.createDOMFromHTML(generatedHTML);
+      console.log(generatedDOM);
       
-      thisCart.dom.productList = generatedDOM;
+      thisProduct.dom.productList.appendChild(generatedDOM);
+      console.log(thisProduct.dom.productList);
       
-      const cartContainer = document.querySelector(select.containerOf.cart);
+      /***
+        generate HTML based on template
+      const generatedHTML = templates.menuProduct(thisProduct.data);
+
+        create element using utils.createElementFromHTML
+      thisProduct.element = utils.createDOMFromHTML(generatedHTML);
       
-      cartContainer.appendChild(menuProduct.element);
+        find menu container
+      const menuContainer = document.querySelector(select.containerOf.menu);
       
-      console.log('adding product:', menuProduct);
+        add element to menu
+      menuContainer.appendChild(thisProduct.element);
+      *****/
     }
     
     addToCart(){
+      
       const thisProduct = this;
       
-      thisProduct.data.name = thisProduct.name;
+      thisProduct.name = thisProduct.data.name;
       
-      thisProduct.amountWidget.value = thisProduct.amount;
+      thisProduct.amount = thisProduct.amountWidget.value;
       
       app.cart.add(thisProduct);
     }
