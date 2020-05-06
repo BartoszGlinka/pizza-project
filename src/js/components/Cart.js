@@ -130,8 +130,7 @@ class Cart{
     };
 
     for(let product of thisCart.products){
-      product.getData();
-      payload.products.push(product);
+      payload.products.push(product.getData());
     }
 
     const options = {
