@@ -165,7 +165,7 @@ class Booking {
         table.classList.add(classNames.booking.tableBooked);
       } else {
         table.classList.remove(classNames.booking.tableBooked);
-        thisBooking.selectedTable = {};
+        thisBooking.selectedTable = null;
       }
     }
   }
@@ -239,12 +239,19 @@ class Booking {
       tableBooked: thisBooking.selectedTable,
       amountPeople: thisBooking.amountPeople.value,
       amountHours : thisBooking.hoursAmount.value,
-      starters: thisBooking.starters,
+      starters: [],
       address: thisBooking.adress.value,
       phone: thisBooking.phone.value,
       
     };
-
+    
+    for(let starter of thisBooking.starters){
+      if(starter.checked == true){
+        payload.starters.push(starter.value);
+      }
+        
+    }
+      
     const options = {
       method: 'POST',
       headers: {

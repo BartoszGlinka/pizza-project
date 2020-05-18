@@ -12,6 +12,7 @@ export const select = {
     cart: '#cart',
     pages: '#pages',
     booking: '.booking-wrapper',
+    mainPage: '.main-page',
   },
   all: {
     menuProducts: '#product-list > .product',
@@ -67,7 +68,7 @@ export const select = {
     hoursAmount: '.hours-amount',
     valueOfHoursAmount:'.hours-amount .amount',
     tables: '.floor-plan .table',
-    starters: '.booking-options .checkbox',
+    starters: '[name="starter"]',
     floorPlan: '.floor-plan',
     phone: '.order-confirmation [name="phone"]',
     adress: '.order-confirmation [name="address"]',
