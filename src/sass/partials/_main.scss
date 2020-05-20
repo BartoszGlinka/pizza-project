@@ -1,10 +1,219 @@
-.main-page {
+*{
+  box-sizing: border-box;
+}
+
+.main-page-content {
   padding: ($base-size * 3) 0;
-  background-color: aqua;
+
+}
+
+.links-pictures, .opening-hour, .main-carousel, .main-gallery {
+  background-color: #fff;
+  margin-top: 6px;
+  padding: 72px 48px;
+}
+
+/*MAIN PICTURES-LINKS ; ORDER-ONLINE, BOOK-TABLE, OPENING HOURS */
+
+.links-pictures {
+  width: 100%;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper, 
+.opening-hours, 
+.order-online, 
+.book-table {
+  display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+  align-content: center;
+}
+
+.links-pictures p {
+  display: block;
+  color: $color-light;
+  font: $font-text;
+  font-weight: $font-bold;
+  font-size: $bigger-size;
+}
+
+.links-pictures .opening-hours .light-paragraph {
+  font-weight: $font-light;
+  font-size: 80%;
+}
+
+.opening-hours {
+  flex-direction: column;
+  background-color: $color-main;
+  margin-top: 6px;
+  border-radius: 5px;
+  min-height: 100px;
+}
+
+.order-online, 
+.book-table {
+  width: 50%;
+  min-width: 50px;
+  min-height: 100px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.wrapper .hidden-paragraph {
+  font-weight: $font-light;
+  font-size: 80%;
+}
+
+.book-table {
+  margin-left: 6px;
+}
+
+.order-online {
+  background: url(../../images/main-page/pizza-1.jpg);
+  position: fixed;
+}
+
+.book-table {
+  background: url(../../images/main-page/pizza-2.jpg);
+}
+.wrapper .order-online:hover,
+.wrapper .book-table:hover{
+  transition: $transition;
+}
+.order-online p:nth-child(1),
+.book-table p:nth-child(1){
+  position: absolute;
+  top: 30px;
+  margin: 0;
+  transition: $transition;
+}
+.order-online p:nth-child(2),
+.book-table p:nth-child(2){
+  position: absolute;
+  top: 80px;
+  z-index: -1;
+  margin: 0;
+  transition: $transition;
+}
+.order-online:hover p:nth-child(1),
+.book-table:hover p:nth-child(1){
+  top: 10px;
+  transition: $transition;
+}
+.order-online:hover p:nth-child(2),
+.book-table:hover p:nth-child(2){
+  top: 40px;
+  z-index: 0;
+  transition: $transition;
 }
 
 
-.page-title {
-  font-size: 25px;
-  color: black;
+/*MAIN CAROUSEL*/
+
+.main-carousel {
+  padding-top: 20px;
+  padding-bootom: 20px;
+  margin: 0;
+}
+
+/*MAIN GALLERY*/
+
+.main-gallery {
+  padding-top: 20px;
+  padding-bootom: 20px;
+  margin: 0;
+}
+
+.photo-1 {
+  background: url(../../images/main-page/pizza-7.jpg);
+}
+
+.photo-2 {
+  background: url(../../images/main-page/pizza-8.jpg);
+}
+
+.photo-3 {
+  background: url(../../images/main-page/pizza-9.jpg);
+}
+
+.photo-4 {
+  background: url(../../images/main-page/pizza-7.jpg);
+}
+
+.photo-5 {
+  background: url(../../images/main-page/pizza-8.jpg);
+}
+
+.photo-6 {
+  background: url(../../images/main-page/pizza-9.jpg);
+}
+
+.photo-1, .photo-2, .photo-3, .photo-4, .photo-5, .photo-6 {
+  min-height: 150px;
+  min-width: 180px;
+}
+
+.image-gallery {
+  width: 100%;
+  min-height: 170px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 2;
+}
+
+.wrapper-line-first, .wrapper-line-second {
+  display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+  width: 100%;
+}
+
+.utlis-background-image{
+  display: flex;
+  position: relative;
+}
+
+.fas {
+  position: absolute;
+  color: $color-light;
+  font-size: $bigger-size;
+  z-index: -1;
+}
+
+.fas:hover {
+  color: $color-main;
+}
+
+.fa-heart {
+  left: 70px;
+}
+
+.fa-share-alt{
+  right: 70px;
+}
+
+.main-gallery .wrapper:hover .image-gallery {
+  opacity: 0.8;
+  transition: $transition;
+}
+
+.main-gallery .wrapper:hover .fas {
+  color: $color-light;
+  z-index: 2;
+}
+
+.main-gallery .wrapper:hover .fas:hover {
+  color: $color-main;
 }

@@ -44,7 +44,6 @@ class AmountWidget extends BaseWidget{
       event.preventDefault();
       thisWidget.setValue(thisWidget.value + 1);
     });
-  
   }
 }
 

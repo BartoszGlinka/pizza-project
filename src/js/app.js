@@ -1,4 +1,4 @@
-import {settings, select, classNames} from './settings.js';
+import {settings, select, classNames, templates} from './settings.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
 import Booking from './components/Booking.js';
@@ -109,6 +109,18 @@ const app = {
       app.cart.add(event.detail.product);
     });
   },
+  
+  initMainPage: function(){
+    //const thisApp = this;
+    
+    const menuContainer = document.querySelector(select.containerOf.mainPage);
+    
+    const generatedHTML = templates.mainPage();
+    
+    menuContainer.innerHTML = generatedHTML;
+    
+    console.log('menuContainer',menuContainer);
+  },
 
   init: function(){
     const thisApp = this;
@@ -117,10 +129,11 @@ const app = {
     ////console.log('classNames:', classNames);
     ////console.log('settings:', settings);
     ////console.log('templates:', templates);
+    thisApp.initMainPage();
+    thisApp.initBooking();
     thisApp.initPages();
     thisApp.initData();
     thisApp.initCart();
-    thisApp.initBooking();
   },
 };
 
