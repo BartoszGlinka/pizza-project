@@ -127,7 +127,7 @@ class Booking {
       }
     
       thisBooking.booked[date][hourBlock].push(table);
-    }  
+    } 
   }
   
   updateDOM(){
@@ -173,6 +173,7 @@ class Booking {
         thisBooking.selectedTable = null;
       }
     }
+    thisBooking.showOccupiedHours();
   }
   
   render(element){
@@ -221,7 +222,6 @@ class Booking {
     for(let i = 0 ; i < thisBooking.dom.tables.length; i++ )
       thisBooking.dom.tables[i].addEventListener('click', function(event){
         event.preventDefault();
-        //const selectedTable = thisBooking.dom.tables[i].getAttribute(settings.booking.tableIdAttribute);
     
         const classOfTable = thisBooking.dom.tables[i].getAttribute('class');
         
@@ -229,6 +229,8 @@ class Booking {
           thisBooking.dom.tables[i].classList.add(classNames.booking.tableBooked);
 
           thisBooking.selectedTable = thisBooking.dom.tables[i].getAttribute(settings.booking.tableIdAttribute);
+          
+          thisBooking.table = parseInt(thisBooking.selectedTable);
         }
       });
   }
@@ -241,15 +243,13 @@ class Booking {
     const payload = {
       dayBooked: thisBooking.date,
       timeBooked: thisBooking.hour,
-      tableBooked: thisBooking.selectedTable,
+      table: parseInt(thisBooking.selectedTable),
       amountPeople: thisBooking.amountPeople.value,
       amountHours : thisBooking.hoursAmount.value,
       starters: [],
       address: thisBooking.adress.value,
       phone: thisBooking.phone.value,
-      
     };
-    
     for(let starter of thisBooking.starters){
       if(starter.checked == true){
         payload.starters.push(starter.value);
@@ -271,7 +271,13 @@ class Booking {
       }).then(function(parsedResponse){
         console.log('parsedResponse',parsedResponse);
       });
-    thisBooking.makeBooked(thisBooking.date, thisBooking.hour, thisBooking.amountPeople.value, thisBooking.selectedTable);
+    thisBooking.makeBooked(thisBooking.date, thisBooking.hour, thisBooking.amountPeople.value, thisBooking.table);
+  }
+  
+  showOccupiedHours(){
+    const thisBooking = this;
+    
+    thisBooking.dom.rangeSlider.bgc = thisBooking.dom.querySelector(select.widgets.hourPicker.rangeSlider);
   }
 }
 

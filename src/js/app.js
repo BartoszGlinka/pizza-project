@@ -88,13 +88,11 @@ const app = {
         return rawResponse.json();
       })
       .then(function(parsedRespose){
-        console.log('parsedRespose', parsedRespose);
         /*save parsedResponde as thisApp.data.products*/
         thisApp.data.products = parsedRespose;
         /*execute initMenu method*/
         thisApp.initMenu();
       });
-    console.log('thisApp.data', JSON.stringify(thisApp.data));
   }, 
 
   initCart: function(){
@@ -119,7 +117,6 @@ const app = {
     
     menuContainer.innerHTML = generatedHTML;
     
-    console.log('menuContainer',menuContainer);
   },
 
   init: function(){

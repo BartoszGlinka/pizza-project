@@ -41,6 +41,7 @@ export const select = {
       wrapper: '.hour-picker',
       input: 'input[type="range"]',
       output: '.output',
+      rangeSlider: '.rangeSlider__horizontal',
     },
   },
   cart: {
@@ -74,7 +75,7 @@ export const select = {
     adress: '.order-confirmation [name="address"]',
   },
   nav: {
-    links: '.main-nav a',
+    links: '.main-nav a, .link-wrapper a',
   },
 };
 

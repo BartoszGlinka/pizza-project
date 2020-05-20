@@ -27,10 +27,10 @@
 .order-online, 
 .book-table {
   display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	justify-content: center;
-	align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
   align-content: center;
 }
 
@@ -82,10 +82,12 @@
 .book-table {
   background: url(../../images/main-page/pizza-2.jpg);
 }
+
 .wrapper .order-online:hover,
 .wrapper .book-table:hover{
   transition: $transition;
 }
+
 .order-online p:nth-child(1),
 .book-table p:nth-child(1){
   position: absolute;
@@ -93,6 +95,7 @@
   margin: 0;
   transition: $transition;
 }
+
 .order-online p:nth-child(2),
 .book-table p:nth-child(2){
   position: absolute;
@@ -101,11 +104,13 @@
   margin: 0;
   transition: $transition;
 }
+
 .order-online:hover p:nth-child(1),
 .book-table:hover p:nth-child(1){
   top: 10px;
   transition: $transition;
 }
+
 .order-online:hover p:nth-child(2),
 .book-table:hover p:nth-child(2){
   top: 40px;
@@ -120,7 +125,70 @@
   padding-top: 20px;
   padding-bootom: 20px;
   margin: 0;
+  display: flex;
 }
+
+.photo-carousel {
+  background-image: url('../../images/main-page/pizza-3.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 5px;
+}
+
+.main-carousel .photo-carousel {
+  min-height: 200px;
+  min-width: 200px;
+}
+
+.carousel-inner {
+  margin-left: 20px;
+}
+
+.carousel-inner h3 {
+  margin-top: 10px;
+}
+
+.carousel-inner p {
+  margin-top: 10px;
+}
+
+.carousel-inner:last-child {
+  font-style: oblique;
+}
+
+.carousel-inner>.item {
+  transition: all .1s;
+}
+
+.item {
+  display: flex;
+}
+
+.item img {
+  margin: 10px;
+  display: inline-block;
+  width: 200px;
+  height: 800px;
+  top: 20px;
+  left: 20px;
+}
+
+.carousel-indicators li {
+  border: 5px solid $color-dark;
+}
+
+.carousel-indicators {
+  bottom: -20px;
+}
+
+.carousel-indicators .active {
+  border: 1px solid $color-main;
+}
+
+.carousel-control {
+  visibility: hidden;
+}
+
 
 /*MAIN GALLERY*/
 
@@ -172,11 +240,11 @@
 
 .wrapper-line-first, .wrapper-line-second {
   display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	justify-content: center;
-	align-items: center;
-	align-content: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
   width: 100%;
 }
 
