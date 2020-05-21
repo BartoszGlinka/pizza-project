@@ -41,7 +41,8 @@ export const select = {
       wrapper: '.hour-picker',
       input: 'input[type="range"]',
       output: '.output',
-      rangeSlider: '.rangeSlider__horizontal',
+      rangeSlider: '.range-slider',
+      rangeSliderBacground: '.rangeSlider__horizontal',
     },
   },
   cart: {

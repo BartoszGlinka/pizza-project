@@ -191,12 +191,15 @@ class Booking {
 
     /*in thisBooking.dom.peopleAmount register element find in property wrapper and matching to selector select.booking.peopleAmount  */
     thisBooking.dom.peopleAmount = thisBooking.dom.wrapper.querySelector(select.booking.peopleAmount);
+    
     /*in thisBooking.dom.hoursAmount register element find in property wrapper and matching to selector select.booking.hoursAmount */
     thisBooking.dom.hoursAmount = thisBooking.dom.wrapper.querySelector(select.booking.hoursAmount);
     
     thisBooking.dom.datePicker = thisBooking.dom.wrapper.querySelector(select.widgets.datePicker.wrapper);
         
     thisBooking.dom.hourPicker = thisBooking.dom.wrapper.querySelector(select.widgets.hourPicker.wrapper);
+    
+    thisBooking.dom.form = document.querySelector(select.widgets.hourPicker.rangeSlider);
     
     thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
     
@@ -277,7 +280,41 @@ class Booking {
   showOccupiedHours(){
     const thisBooking = this;
     
-    thisBooking.dom.rangeSlider.bgc = thisBooking.dom.querySelector(select.widgets.hourPicker.rangeSlider);
+    thisBooking.dom.form.background = thisBooking.dom.form.querySelector(select.widgets.hourPicker.rangeSliderBacground);
+    
+    const startHour = settings.hours.open;
+    const endHour = settings.hours.close;
+    const tableAmount = [];
+    let colourArray = 0;
+    const yellowPicker = '#f1c40f';  
+    const redPicker = '#c0392b';
+    const greenPicker = '#1abc9c'; 
+
+    for(let hourBlock = startHour; hourBlock <= endHour; hourBlock += 0.5){
+      if(thisBooking.booked[thisBooking.date][hourBlock] == 2) {
+        tableAmount.push(yellowPicker);
+      } else if (thisBooking.booked[thisBooking.date][hourBlock] == 3) {
+        tableAmount.push(redPicker);
+      } else if (!thisBooking.booked[thisBooking.date][hourBlock]) {
+        tableAmount.push(greenPicker); 
+      }
+    }
+    
+    let index1 = 0;
+    let index2 = 5;
+    let i = 0;
+    
+    for(i = 0 ; i < tableAmount.length; i++){
+      tableAmount[i] =(tableAmount[i]+ ' ' + index1 + '%' + ' ' + index2 + '%');
+      index1 += 5;
+      index2 += 5;
+    }
+    console.log('tableAmount',tableAmount);
+    colourArray = tableAmount.join(', ');
+    console.log('colourArray:',colourArray);
+    //console.log('tableAmount1',tableAmount[0]);
+    
+    thisBooking.dom.form.background.style.background = 'linear-gradient(to right,' + colourArray + ')';
   }
 }
 
